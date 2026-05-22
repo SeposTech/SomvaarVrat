@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "231657241235",
+    "project_id": "somvaarvrat",
+    "storage_bucket": "somvaarvrat.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231657241235:android:ae6cded6d5db42de4fab66",
+        "android_client_info": {
+          "package_name": "com.spiritual.somvaarvrat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK4-loJI2G3-WdJtlfodof8XaJw2Iiu4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
