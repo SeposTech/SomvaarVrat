@@ -39,13 +39,13 @@ fun DetailScreen(
 
     val topBarGradient = Brush.verticalGradient(
         colors = listOf(
-            Color(0xFFFFF1D6),
+            Color(0xFFE68A1F),
             Color(0xFFE68A1F),
             Color(0xFFC96A12)
         )
     )
 
-    val backgroundColor = Color(0xFFFFF8F0)
+    val backgroundColor = Color(0xFFFFD8A8)
 
     Scaffold(
 

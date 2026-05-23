@@ -84,7 +84,7 @@ fun SplashScreen(
 
             } else {
 
-                delay(3500)
+                delay(2000)
 
                 navController.navigate("Home") {
                     popUpTo("Splash") { inclusive = true }
@@ -93,7 +93,7 @@ fun SplashScreen(
 
         } catch (e: Exception) {
 
-            delay(3500)
+            delay(2000)
 
             navController.navigate("Home") {
                 popUpTo("Splash") { inclusive = true }
@@ -107,7 +107,7 @@ fun SplashScreen(
 
         // Full Splash Background Image
         Image(
-            painter = painterResource(id = R.drawable.bg_bhole),
+            painter = painterResource(id = R.drawable.ic_new_bg),
             contentDescription = "Somvar Vrat Splash",
             modifier = Modifier
                 .fillMaxSize()

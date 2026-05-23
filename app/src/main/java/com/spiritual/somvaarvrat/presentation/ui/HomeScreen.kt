@@ -60,7 +60,7 @@ fun HomeScreen(
 
     val topBarGradient = Brush.verticalGradient(
         colors = listOf(
-            Color(0xFFFFF1D6),
+            Color(0xFFE68A1F),
             Color(0xFFE68A1F),
             Color(0xFFC96A12)
         )
