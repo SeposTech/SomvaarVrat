@@ -14,15 +14,15 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.material3.Text
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,13 +37,15 @@ fun DetailScreen(
     content: String
 ) {
 
-    val topBarGradient = Brush.horizontalGradient(
+    val topBarGradient = Brush.verticalGradient(
         colors = listOf(
-            Color(0xFF0D47A1),
-            Color(0xFF1565C0),
-            Color(0xFF42A5F5)
+            Color(0xFFFFF1D6),
+            Color(0xFFE68A1F),
+            Color(0xFFC96A12)
         )
     )
+
+    val backgroundColor = Color(0xFFFFF8F0)
 
     Scaffold(
 
@@ -58,177 +60,143 @@ fun DetailScreen(
             )
         },
 
-        containerColor = Color(0xFFF4F8FF)
+        containerColor = Color(0xFFC96A12)
 
     ) { innerPadding ->
 
-        Surface(
+        // OUTER BORDER
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color(0xFFFFD180),
+                            Color(0xFFC96A12),
+                            Color(0xFFFFD180)
+                        )
+                    )
+                )
+                .padding(2.dp)
         ) {
 
+            // INNER SCREEN
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(
-                                Color(0xFFF5F9FF),
-                                Color(0xFFE8F1FF)
-                            )
-                        )
-                    )
+                    .background(backgroundColor)
+                    .padding(innerPadding)
                     .verticalScroll(rememberScrollState())
-                    .padding(18.dp)
+                    .padding(
+                        horizontal = 18.dp,
+                        vertical = 18.dp
+                    )
             ) {
 
-                // Main Spiritual Content Container
-                Box(
-                    modifier = Modifier.fillMaxWidth()
+                // Top Spiritual Line
+                Text(
+                    text = "🕉️ ━━━━━━━━━ 🔱 ━━━━━━━━━ 🕉️",
+
+                    modifier = Modifier.fillMaxWidth(),
+
+                    textAlign = TextAlign.Center,
+
+                    color = Color(0xFFC96A12),
+
+                    fontSize = 18.sp,
+
+                    fontWeight = FontWeight.Bold
+                )
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // Main Content
+                Column(
+
+                    modifier = Modifier.fillMaxWidth(),
+
+                    verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
 
-                    // Background Glow
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(520.dp)
-                            .background(
-                                brush = Brush.verticalGradient(
-                                    colors = listOf(
-                                        Color(0x220D47A1),
-                                        Color.Transparent
-                                    )
-                                ),
-                                shape = RoundedCornerShape(30.dp)
-                            )
+                    Text(
+                        text = content,
+
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontWeight = FontWeight.Medium
+                        ),
+
+                        color = Color(0xFF4E342E),
+
+                        fontSize = 20.sp,
+
+                        lineHeight = 38.sp,
+
+                        textAlign = TextAlign.Start,
+
+                        fontFamily = FontFamily.Serif,
+
+                        letterSpacing = 0.3.sp
                     )
 
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    // Bottom Spiritual Line
+                    Text(
+                        text = "🕉️ ━━━━━━━━━ 🔱 ━━━━━━━━━ 🕉️",
+
+                        modifier = Modifier.fillMaxWidth(),
+
+                        textAlign = TextAlign.Center,
+
+                        color = Color(0xFFC96A12),
+
+                        fontSize = 18.sp,
+
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Spacer(modifier = Modifier.height(18.dp))
+
+                    // Bottom Blessing
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(
-                                color = Color.White.copy(alpha = 0.96f),
-                                shape = RoundedCornerShape(30.dp)
-                            )
-                            .padding(
-                                horizontal = 24.dp,
-                                vertical = 30.dp
-                            )
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
 
-                        // Top Om Icon
                         Text(
-                            text = "🕉️",
-                            fontSize = 60.sp,
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center
+                            text = "🔱",
+                            fontSize = 34.sp
                         )
 
-                        Spacer(modifier = Modifier.height(14.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
 
-                        // Spiritual Divider
                         Text(
-                            text = "༺═══━━━✦━━━═══༻",
-                            color = Color(0xFF1565C0),
-                            fontSize = 18.sp,
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center
+                            text = "हर हर महादेव",
+
+                            color = Color(0xFFC96A12),
+
+                            fontSize = 24.sp,
+
+                            fontWeight = FontWeight.Bold
                         )
 
-                        Spacer(modifier = Modifier.height(18.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
 
-                        // Title
                         Text(
-                            text = title,
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color(0xFF0D47A1),
+                            text = "भगवान शिव आपकी सभी मनोकामनाएं पूर्ण करें 🙏",
+
+                            color = Color(0xFF6D4C41),
+
+                            fontSize = 15.sp,
+
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth()
+
+                            lineHeight = 24.sp
                         )
-
-                        Spacer(modifier = Modifier.height(10.dp))
-
-                        Text(
-                            text = "ॐ त्र्यम्बकं यजामहे 🙏",
-                            fontSize = 18.sp,
-                            color = Color(0xFFFF9800),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        )
-
-                        Spacer(modifier = Modifier.height(26.dp))
-
-                        // Decorative Line
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(1.dp)
-                                .background(
-                                    Brush.horizontalGradient(
-                                        colors = listOf(
-                                            Color.Transparent,
-                                            Color(0xFF64B5F6),
-                                            Color.Transparent
-                                        )
-                                    )
-                                )
-                        )
-
-                        Spacer(modifier = Modifier.height(28.dp))
-
-                        // Main Content
-                        Text(
-                            text = content,
-                            color = Color(0xFF5D4037),
-                            fontSize = 21.sp,
-                            lineHeight = 25.sp,
-                            letterSpacing = 0.5.sp,
-                            textAlign = TextAlign.Justify,
-                            style = MaterialTheme.typography.bodyLarge.copy(
-                                fontWeight = FontWeight.Medium
-                            ),
-
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        )
-
-                        Spacer(modifier = Modifier.height(34.dp))
-
-                        // Bottom Blessing
-                        Column(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-
-                            Text(
-                                text = "🔱",
-                                fontSize = 36.sp
-                            )
-
-                            Spacer(modifier = Modifier.height(10.dp))
-
-                            Text(
-                                text = "हर हर महादेव",
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color(0xFF0D47A1)
-                            )
-
-                            Spacer(modifier = Modifier.height(6.dp))
-
-                            Text(
-                                text = "भगवान शिव आपकी सभी मनोकामनाएं पूर्ण करें 🙏",
-                                fontSize = 15.sp,
-                                color = Color(0xFF546E7A),
-                                textAlign = TextAlign.Center
-                            )
-                        }
                     }
                 }
 
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(28.dp))
             }
         }
     }

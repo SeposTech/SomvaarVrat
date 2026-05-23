@@ -8,9 +8,11 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.spiritual.somvaarvrat.presentation.ui.DetailScreen
 import com.spiritual.somvaarvrat.presentation.ui.HomeScreen
@@ -67,11 +69,23 @@ fun Navigation(appUpdateManager: AppUpdateManager) {
             HomeScreen(navController = navController)
         }
 
-        composable(route = "detail") {
+        composable(
+            route = "detail/{title}/{content}",
+            arguments = listOf(
+                navArgument("title") {
+                    type = NavType.StringType
+                },
+                navArgument("content") {
+                    type = NavType.StringType
+                }
+            )) { backStackEntry ->
+
+            val title = backStackEntry.arguments?.getString("title") ?: ""
+            val content = backStackEntry.arguments?.getString("content") ?: ""
             DetailScreen(
                 navController = navController,
-                title = "Somvaar Vrat",
-                content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                title = title,
+                content = content
             )
         }
     }
