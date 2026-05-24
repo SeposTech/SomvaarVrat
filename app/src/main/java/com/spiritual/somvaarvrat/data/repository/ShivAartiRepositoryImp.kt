@@ -19,28 +19,23 @@ class ShivAartiRepositoryImp @Inject constructor() : ShivAartiRepository {
             ),
 
             ShivAartiModel(
-                title = "🔱 सोमववार व्रत कथा",
+                title = "🔱 सोमवार व्रत कथा",
                 resId = R.raw.shomvaar_vart_katha
             ),
 
             ShivAartiModel(
-                title = "📿 महामृत्युंजय मंत्र",
-                resId = R.raw.mahamrityunjay_mantra
+                title = "📿 सोलह सोमवार व्रत कथा",
+                resId = R.raw.solaha_shomvaar_katha
             ),
 
             ShivAartiModel(
-                title = "🌺 शिव स्तोत्र",
-                resId = R.raw.shiv_stotra
+                title = "🌙 सौम्य प्रदोष व्रत कथा",
+                resId = R.raw.pardosh_katha
             ),
 
             ShivAartiModel(
-                title = "🧘‍♂️ शिव ध्यान मंत्र",
-                resId = R.raw.shiv_dhyan_mantra
-            ),
-
-            ShivAartiModel(
-                title = "🚩 रुद्राष्टक",
-                resId = R.raw.rudrashtakam
+                title = "🪔 शिव जी आरती",
+                resId = R.raw.shiv_aarti
             )
         )
     }
