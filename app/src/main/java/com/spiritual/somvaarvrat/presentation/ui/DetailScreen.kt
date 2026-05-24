@@ -136,7 +136,7 @@ fun DetailScreen(
 
                         color = Color(0xFF4E342E),
 
-                        fontSize = 20.sp,
+                        fontSize = 24.sp,
 
                         lineHeight = 38.sp,
 
