@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.androidx.compose.animation)
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

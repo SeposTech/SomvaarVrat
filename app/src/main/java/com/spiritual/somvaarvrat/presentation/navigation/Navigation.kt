@@ -70,22 +70,25 @@ fun Navigation(appUpdateManager: AppUpdateManager) {
         }
 
         composable(
-            route = "detail/{title}/{content}",
+            route = "detail/{title}/{resId}",
             arguments = listOf(
                 navArgument("title") {
                     type = NavType.StringType
                 },
-                navArgument("content") {
-                    type = NavType.StringType
+                navArgument("resId") {
+                    type = NavType.IntType
                 }
-            )) { backStackEntry ->
+            )
+        ) { backStackEntry ->
 
             val title = backStackEntry.arguments?.getString("title") ?: ""
-            val content = backStackEntry.arguments?.getString("content") ?: ""
+
+            val resId = backStackEntry.arguments?.getInt("resId") ?: 0
+
             DetailScreen(
                 navController = navController,
                 title = title,
-                content = content
+                resId = resId
             )
         }
     }

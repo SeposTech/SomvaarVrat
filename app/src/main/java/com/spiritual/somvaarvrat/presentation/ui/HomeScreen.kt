@@ -34,6 +34,7 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -47,17 +48,40 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.spiritual.somvaarvrat.data.repository.model.ShivAartiModel
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
+import com.spiritual.somvaarvrat.presentation.viewmodel.ShivAartiViewModel
 import com.spiritual.somvaarvrat.ui.theme.SomvaarVratTheme
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+    viewModel: ShivAartiViewModel = hiltViewModel()
 ) {
 
+    val uiState = viewModel.uiState.collectAsState().value
+    var aartiList: List<ShivAartiModel> = emptyList()
+    when(uiState) {
+        is ShivAartiViewModel.UiState.Loading -> {
+            // Show loading indicator or placeholder
+
+        }
+
+        is ShivAartiViewModel.UiState.Success -> {
+            // Display the home screen content with the fetched data
+            aartiList = uiState.menuList
+
+        }
+
+        is ShivAartiViewModel.UiState.Error -> {
+            // Show error message
+
+        }
+    }
     val topBarGradient = Brush.verticalGradient(
         colors = listOf(
             Color(0xFFE68A1F),
@@ -337,14 +361,14 @@ fun HomeScreen(
                 )
             ) {
 
-                items(menuList) { item ->
+                items(aartiList) { item ->
 
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
                                 navController.navigate(
-                                    "detail/${Uri.encode(item)}/${Uri.encode(contentMap[item] ?: "")}"
+                                    "detail/${item.title}/${item.resId}"
                                 )
                             },
 
@@ -376,34 +400,12 @@ fun HomeScreen(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
 
-                                Box(
-                                    modifier = Modifier
-                                        .background(
-                                            color = Color(0xFFFFD8A8),
-                                            shape = RoundedCornerShape(16.dp)
-                                        )
-                                        .padding(14.dp)
-                                ) {
-
-                                    Text(
-                                        text = when (item) {
-
-                                            "व्रत विधि" -> "📿"
-                                            "शिव व्रत कथा" -> "📖"
-                                            "शिव आरती" -> "🪔"
-                                            "शिव मंत्र" -> "🔱"
-                                            "शिव चालीसा" -> "📜"
-                                            else -> "🙏"
-                                        }
-                                    )
-                                }
-
                                 Column(
                                     modifier = Modifier.padding(start = 16.dp)
                                 ) {
 
                                     Text(
-                                        text = item,
+                                        text = item.title,
 
                                         style = MaterialTheme.typography.titleMedium,
 

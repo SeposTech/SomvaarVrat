@@ -3,8 +3,9 @@ package com.spiritual.somvaarvrat.data.repository
 import com.spiritual.somvaarvrat.R
 import com.spiritual.somvaarvrat.data.repository.model.ShivAartiModel
 import com.spiritual.somvaarvrat.domain.repository.ShivAartiRepository
+import javax.inject.Inject
 
-class ShivAartiRepositoryImp : ShivAartiRepository {
+class ShivAartiRepositoryImp @Inject constructor() : ShivAartiRepository {
     override suspend fun getShivAartiList(): List<ShivAartiModel> {
         return getAartiList()
     }
@@ -13,13 +14,13 @@ class ShivAartiRepositoryImp : ShivAartiRepository {
         return listOf(
 
             ShivAartiModel(
-                title = "🕉️ शिव आरती",
-                resId = R.raw.shiv_aarti
+                title = "🕉️ पूजा विधि",
+                resId = R.raw.vidhi
             ),
 
             ShivAartiModel(
-                title = "🔱 शिव चालीसा",
-                resId = R.raw.shiv_chalisa
+                title = "🔱 सोमववार व्रत कथा",
+                resId = R.raw.shomvaar_vart_katha
             ),
 
             ShivAartiModel(

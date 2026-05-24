@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.spiritual.somvaarvrat.presentation.navigation.Navigation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     lateinit var appUpdateManager: AppUpdateManager
     override fun onCreate(savedInstanceState: Bundle?) {

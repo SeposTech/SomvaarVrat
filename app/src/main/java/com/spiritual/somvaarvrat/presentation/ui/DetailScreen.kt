@@ -16,10 +16,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -28,14 +30,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.spiritual.somvaarvrat.R
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
 
 @Composable
 fun DetailScreen(
     navController: NavController,
     title: String,
-    content: String
+    resId: Int
 ) {
+    val context = LocalContext.current
+    val content = remember(resId) {
+        context.resources.openRawResource(resId)
+            .bufferedReader()
+            .use { it.readText() }
+    }
 
     val topBarGradient = Brush.verticalGradient(
         colors = listOf(
@@ -211,24 +220,6 @@ fun DetailScreenPreview() {
 
         title = "शिव व्रत विधि",
 
-        content =
-            """
-            प्रातः काल स्नान करके स्वच्छ वस्त्र धारण करें।
-
-            भगवान शिव का जल, दूध और बेलपत्र से अभिषेक करें।
-
-            शिव मंत्र "ॐ नमः शिवाय" का जाप करें।
-
-            सोमवार व्रत कथा का श्रद्धापूर्वक पाठ करें।
-
-            शाम को शिव आरती करें और प्रसाद वितरित करें।
-
-            भगवान शिव की कृपा से जीवन में सुख, शांति और समृद्धि आती है।
-
-            हर सोमवार भगवान शिव का व्रत रखने से मन शांत रहता है
-            और जीवन में सकारात्मक ऊर्जा का संचार होता है।
-
-            हर हर महादेव 🔱
-            """.trimIndent()
+        resId = R.raw.shiv_aarti
     )
 }
