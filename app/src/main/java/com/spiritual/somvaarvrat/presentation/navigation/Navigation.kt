@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.android.play.core.appupdate.AppUpdateManager
+import com.spiritual.somvaarvrat.presentation.ui.AboutUsScreen
 import com.spiritual.somvaarvrat.presentation.ui.DetailScreen
 import com.spiritual.somvaarvrat.presentation.ui.HomeScreen
 import com.spiritual.somvaarvrat.presentation.ui.SplashScreen
@@ -90,6 +91,10 @@ fun Navigation(appUpdateManager: AppUpdateManager) {
                 title = title,
                 resId = resId
             )
+        }
+
+        composable(route = "about") {
+            AboutUsScreen(navController = navController)
         }
     }
 }

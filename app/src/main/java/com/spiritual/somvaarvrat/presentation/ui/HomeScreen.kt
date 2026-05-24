@@ -1,6 +1,8 @@
 package com.spiritual.somvaarvrat.presentation.ui
 
+import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +25,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MenuBook
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -43,6 +48,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,6 +61,7 @@ import com.spiritual.somvaarvrat.data.repository.model.ShivAartiModel
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
 import com.spiritual.somvaarvrat.presentation.viewmodel.ShivAartiViewModel
 import com.spiritual.somvaarvrat.ui.theme.SomvaarVratTheme
+import androidx.core.net.toUri
 
 @Composable
 fun HomeScreen(
@@ -62,10 +69,10 @@ fun HomeScreen(
     navController: NavController,
     viewModel: ShivAartiViewModel = hiltViewModel()
 ) {
-
+    val context = LocalContext.current
     val uiState = viewModel.uiState.collectAsState().value
     var aartiList: List<ShivAartiModel> = emptyList()
-    when(uiState) {
+    when (uiState) {
         is ShivAartiViewModel.UiState.Loading -> {
             // Show loading indicator or placeholder
 
@@ -95,56 +102,6 @@ fun HomeScreen(
             Color(0xFFFFF8F0),
             Color(0xFFFFE8CC)
         )
-    )
-
-    val menuList = listOf(
-        "व्रत विधि",
-        "शिव व्रत कथा",
-        "शिव आरती",
-        "शिव मंत्र",
-        "शिव चालीसा",
-        "शिव स्तोत्र"
-    )
-
-    val contentMap = mapOf(
-
-        "व्रत विधि" to
-                """
-            प्रातः काल स्नान करके स्वच्छ वस्त्र धारण करें।
-
-            भगवान शिव का जल, दूध और बेलपत्र से अभिषेक करें।
-
-            शिव मंत्र "ॐ नमः शिवाय" का जाप करें।
-            """.trimIndent(),
-
-        "शिव व्रत कथा" to
-                """
-            एक समय की बात है एक भक्त भगवान शिव की पूजा करता था।
-
-            भगवान शिव उसकी भक्ति से प्रसन्न हुए और उसके सभी दुख दूर कर दिए।
-            """.trimIndent(),
-
-        "शिव आरती" to
-                """
-            ॐ जय शिव ओंकारा,
-            स्वामी जय शिव ओंकारा।
-            """.trimIndent(),
-
-        "शिव मंत्र" to
-                """
-            ॐ नमः शिवाय 🙏
-            """.trimIndent(),
-
-        "शिव चालीसा" to
-                """
-            जय गणेश गिरिजा सुवन,
-            मंगल मूल सुजान।
-            """.trimIndent(),
-
-        "शिव स्तोत्र" to
-                """
-            नमामि शमीशान निर्वाण रूपम्।
-            """.trimIndent()
     )
 
     var selectedBottomItem by remember {
@@ -181,15 +138,29 @@ fun HomeScreen(
 
                 NavigationBarItem(
                     selected = selectedBottomItem == 0,
-                    onClick = { selectedBottomItem = 0 },
+                    onClick = {
+                        selectedBottomItem = 0
+                        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(
+                                Intent.EXTRA_TEXT,
+                                "Download this app:\nhttps://play.google.com/store/apps/details?id=com.spiritual.somvaarvrat"
+                            )
+                        }
+
+                        context.startActivity(
+                            Intent.createChooser(shareIntent, "Share App")
+                        )
+
+                    },
                     icon = {
                         Icon(
-                            imageVector = Icons.Default.Home,
-                            contentDescription = "Home"
+                            imageVector = Icons.Default.Share,
+                            contentDescription = "Share"
                         )
                     },
                     label = {
-                        Text("Home")
+                        Text("Share")
                     },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = selectedColor,
@@ -202,15 +173,23 @@ fun HomeScreen(
 
                 NavigationBarItem(
                     selected = selectedBottomItem == 1,
-                    onClick = { selectedBottomItem = 1 },
+                    onClick = {
+                        selectedBottomItem = 1
+                        val intent = Intent(
+                            Intent.ACTION_VIEW,
+                            "market://details?id=com.spiritual.somvaarvrat".toUri()
+                        )
+
+                        context.startActivity(intent)
+                    },
                     icon = {
                         Icon(
-                            imageVector = Icons.Default.MenuBook,
-                            contentDescription = "Katha"
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "Rating"
                         )
                     },
                     label = {
-                        Text("Katha")
+                        Text("Rating")
                     },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = selectedColor,
@@ -223,36 +202,18 @@ fun HomeScreen(
 
                 NavigationBarItem(
                     selected = selectedBottomItem == 2,
-                    onClick = { selectedBottomItem = 2 },
+                    onClick = {
+                        selectedBottomItem = 2
+                        navController.navigate("about")
+                    },
                     icon = {
                         Icon(
-                            imageVector = Icons.Default.Book,
-                            contentDescription = "Aarti"
+                            imageVector = Icons.Default.Info,
+                            contentDescription = "About Us"
                         )
                     },
                     label = {
-                        Text("Aarti")
-                    },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = selectedColor,
-                        selectedTextColor = selectedColor,
-                        unselectedIconColor = unselectedColor,
-                        unselectedTextColor = unselectedColor,
-                        indicatorColor = Color(0xFFFFE0B2)
-                    )
-                )
-
-                NavigationBarItem(
-                    selected = selectedBottomItem == 3,
-                    onClick = { selectedBottomItem = 3 },
-                    icon = {
-                        Icon(
-                            imageVector = Icons.Default.Favorite,
-                            contentDescription = "Bhakti"
-                        )
-                    },
-                    label = {
-                        Text("Bhakti")
+                        Text("About Us")
                     },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = selectedColor,
