@@ -20,6 +20,7 @@ import com.spiritual.somvaarvrat.presentation.ui.AboutUsScreen
 import com.spiritual.somvaarvrat.presentation.ui.DetailScreen
 import com.spiritual.somvaarvrat.presentation.ui.HomeScreen
 import com.spiritual.somvaarvrat.presentation.ui.SplashScreen
+import com.spiritual.somvaarvrat.presentation.ui.detail.PujaVidhiScreen
 
 @Composable
 fun Navigation(appUpdateManager: AppUpdateManager) {
@@ -119,6 +120,10 @@ fun Navigation(appUpdateManager: AppUpdateManager) {
                 title = title,
                 resId = resId
             )
+        }
+
+        composable("pujaVidhi") {
+            PujaVidhiScreen(navController = navController)
         }
     }
 }

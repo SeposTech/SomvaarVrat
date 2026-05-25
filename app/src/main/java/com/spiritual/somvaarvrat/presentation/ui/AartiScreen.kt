@@ -100,7 +100,7 @@ fun AartiScreen(
                         fontSize = 20.sp,
                         fontFamily = FontFamily.Serif,
                         lineHeight = 34.sp,
-                        color = Color(0xFF3E2723),
+                        color = Color(0xFF9C2F12),
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(horizontal = 8.dp)
                     )
