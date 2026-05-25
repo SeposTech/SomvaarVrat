@@ -14,6 +14,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.android.play.core.appupdate.AppUpdateManager
+import com.spiritual.somvaarvrat.R
+import com.spiritual.somvaarvrat.presentation.ui.AartiScreen
 import com.spiritual.somvaarvrat.presentation.ui.AboutUsScreen
 import com.spiritual.somvaarvrat.presentation.ui.DetailScreen
 import com.spiritual.somvaarvrat.presentation.ui.HomeScreen
@@ -95,6 +97,28 @@ fun Navigation(appUpdateManager: AppUpdateManager) {
 
         composable(route = "about") {
             AboutUsScreen(navController = navController)
+        }
+
+        composable(
+            route = "aarti/{title}/{resId}",
+            arguments = listOf(
+                navArgument("title") {
+                    type = NavType.StringType
+                },
+                navArgument("resId") {
+                    type = NavType.IntType
+                }
+            )
+        ) { backStackEntry ->
+
+            val title = backStackEntry.arguments?.getString("title") ?: ""
+            val resId = backStackEntry.arguments?.getInt("resId") ?: 0
+
+            AartiScreen(
+                navController = navController,
+                title = title,
+                resId = resId
+            )
         }
     }
 }
