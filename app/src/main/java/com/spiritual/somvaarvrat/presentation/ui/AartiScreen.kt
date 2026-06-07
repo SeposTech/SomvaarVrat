@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
+import com.spiritual.somvaarvrat.utils.TrackScreen
 
 @Composable
 fun AartiScreen(
@@ -29,6 +30,7 @@ fun AartiScreen(
     resId: Int
 ) {
 
+    TrackScreen("AartiScreen")
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 

@@ -32,6 +32,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.spiritual.somvaarvrat.R
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
+import com.spiritual.somvaarvrat.utils.TrackScreen
 
 @Composable
 fun DetailScreen(
@@ -39,6 +40,7 @@ fun DetailScreen(
     title: String,
     resId: Int
 ) {
+    TrackScreen("DetailScreen")
     val context = LocalContext.current
     val content = remember(resId) {
         context.resources.openRawResource(resId)

@@ -41,12 +41,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
+import com.spiritual.somvaarvrat.utils.TrackScreen
 
 @Composable
 fun PujaVidhiScreen(
     navController: NavController
 ) {
-
+    TrackScreen("PoojaVidhiScreen")
     val backgroundColor = Color(0xFFFFFAF5)
     val topBarGradient = Brush.verticalGradient(
         colors = listOf(

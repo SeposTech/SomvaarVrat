@@ -26,10 +26,12 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.spiritual.somvaarvrat.R
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
+import com.spiritual.somvaarvrat.utils.TrackScreen
 
 @Composable
 fun AboutUsScreen(navController: NavController) {
 
+    TrackScreen("AboutUsScreen")
     val topBarGradient = Brush.verticalGradient(
         listOf(
             Color(0xFFFF8C00),

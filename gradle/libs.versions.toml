@@ -46,6 +46,7 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-auth = { module = "com.google.firebase:firebase-auth" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
 google-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "ads" }
+google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 
 androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "composeAnimation" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }

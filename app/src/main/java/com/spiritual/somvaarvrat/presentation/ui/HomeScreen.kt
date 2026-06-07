@@ -58,6 +58,7 @@ import androidx.navigation.NavController
 import com.spiritual.somvaarvrat.data.repository.model.ShivAartiModel
 import com.spiritual.somvaarvrat.presentation.components.CenterAlignTopBar
 import com.spiritual.somvaarvrat.presentation.viewmodel.ShivAartiViewModel
+import com.spiritual.somvaarvrat.utils.TrackScreen
 
 @Composable
 fun HomeScreen(
@@ -93,6 +94,7 @@ fun HomeScreen(
     )
 
     val backgroundColor = Color(0xFFFFD8A8)
+    TrackScreen("Home")
 
     Scaffold(
 

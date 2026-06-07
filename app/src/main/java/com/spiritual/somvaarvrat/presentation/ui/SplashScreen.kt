@@ -25,6 +25,7 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.spiritual.somvaarvrat.R
+import com.spiritual.somvaarvrat.utils.TrackScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 
@@ -33,7 +34,7 @@ fun SplashScreen(
     navController: NavController,
     appUpdateManager: AppUpdateManager
 ) {
-
+    TrackScreen("SplashScreen")
     val context = LocalContext.current
     val activity = context as? Activity
 
