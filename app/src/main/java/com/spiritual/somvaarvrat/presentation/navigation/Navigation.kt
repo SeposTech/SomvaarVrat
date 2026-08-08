@@ -14,13 +14,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.android.play.core.appupdate.AppUpdateManager
-import com.spiritual.somvaarvrat.R
 import com.spiritual.somvaarvrat.presentation.ui.AartiScreen
 import com.spiritual.somvaarvrat.presentation.ui.AboutUsScreen
 import com.spiritual.somvaarvrat.presentation.ui.DetailScreen
 import com.spiritual.somvaarvrat.presentation.ui.HomeScreen
+import com.spiritual.somvaarvrat.presentation.ui.PujaVidhiScreen
 import com.spiritual.somvaarvrat.presentation.ui.SplashScreen
-import com.spiritual.somvaarvrat.presentation.ui.detail.PujaVidhiScreen
 
 @Composable
 fun Navigation(appUpdateManager: AppUpdateManager) {
@@ -70,7 +69,9 @@ fun Navigation(appUpdateManager: AppUpdateManager) {
 
         ) {
 
-            HomeScreen(navController = navController)
+            HomeScreen(navController = navController, onBackPress = {
+                activity.finish()
+            })
         }
 
         composable(
@@ -97,7 +98,9 @@ fun Navigation(appUpdateManager: AppUpdateManager) {
         }
 
         composable(route = "about") {
-            AboutUsScreen(navController = navController)
+            AboutUsScreen(onBackPress = {
+                navController.popBackStack()
+            })
         }
 
         composable(
