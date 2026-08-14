@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -52,25 +51,16 @@ fun PujaVidhiScreen(
         )
     )
 
-    val backgroundGradient = Brush.verticalGradient(
-        colors = listOf(
-            Color(0xFFFFF3E0),
-            Color(0xFFFFE0B2),
-            Color(0xFFFFCC80)
-        )
-    )
-
     Scaffold(
         topBar = {
             CenterAlignTopBar(
-                title = "About Us",
+                title = "\uD83D\uDD49\uFE0F पूजा विधि ",
                 gradientBrush = topBarGradient,
                 onBack = { navController.popBackStack() }
             )
         },
         modifier = Modifier
             .fillMaxSize()
-            .safeDrawingPadding()
             .navigationBarsPadding(),
 
         containerColor = backgroundColor

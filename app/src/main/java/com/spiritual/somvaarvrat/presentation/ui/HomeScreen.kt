@@ -98,8 +98,7 @@ fun HomeScreen(
     Scaffold(
 
         modifier = Modifier
-            .fillMaxSize()
-            .safeDrawingPadding(),
+            .fillMaxSize(),
 
         containerColor = Color(0xFFFFFAF5),
 
